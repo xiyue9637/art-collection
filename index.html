@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>曦月的插画收藏夹</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>曦月的插画收藏夹</h1>
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    // 预留120张位置，自动检测存在的图片
+    const MAX_IMAGES = 120;
+    const gallery = document.getElementById('gallery');
+    
+    // 并行加载图片（保持顺序）
+    const loadPromises = [];
+    for (let i = 1; i <= MAX_IMAGES; i++) {
+      const img = new Image();
+      img.src = `/images/xiyue${i}.jpg`;
+      loadPromises.push(
+        new Promise(resolve => {
+          img.onload = () => resolve({ num: i, img });
+          img.onerror = () => resolve(null); // 跳过不存在的图片
+        })
+      );
+    }
+
+    // 渲染有效图片（双列布局）
+    Promise.all(loadPromises).then(results => {
+      results.filter(Boolean).forEach(({ img }) => {
+        const item = document.createElement('div');
+        item.className = 'image-item';
+        item.appendChild(img);
+        gallery.appendChild(item);
+      });
+    });
+  </script>
+</body>
+</html>

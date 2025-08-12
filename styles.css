@@ -1,0 +1,51 @@
+:root {
+  --accent: #D09B49; /* 烫金色 */
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  /* 紫色渐变背景：深紫(#4a148c) → 浅紫(#9b59b6) */
+  background: linear-gradient(135deg, #4a148c 0%, #9b59b6 100%);
+  color: var(--accent);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  margin: 20px 0 40px;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 增强烫金质感 */
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 双列并排 */
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 紫色相框效果 */
+.image-item {
+  border: 3px solid var(--accent); /* 烫金边框 */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); /* 深色阴影 */
+  transition: transform 0.3s;
+}
+
+.image-item:hover {
+  transform: scale(1.02); /* 轻微放大效果 */
+}
+
+.image-item img {
+  width: 100%;
+  display: block;
+  background: #1a0a33; /* 深紫背景保护图片 */
+}
+
+/* 彻底移除冗余元素 */
+footer, nav, .notification { display: none !important; }
